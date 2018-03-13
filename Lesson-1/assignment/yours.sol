@@ -4,9 +4,9 @@ contract Payroll{
     
     address boss = 0xca35b7d915458ef540ade6068dfe2f44e8fa733c;
     
-    address employee;
+    address employee = 0x14723a09acff6d2a60dcdf7aa4aff308fddc160c;
     
-    uint salary;
+    uint salary = 1;
     
     uint constant payDuration = 10 seconds;
     uint lastPayday = now;
@@ -18,12 +18,11 @@ contract Payroll{
         return this.balance;
     }
     
-    function setEmployAddress(address newAddress) returns(address){
+    function setEmployAddress(address newAddress){
         if(msg.sender != boss){
             revert();
         }
         employee = newAddress;
-        return employee;
     }
     
     function setEmploySalary(uint newSalary){
@@ -53,5 +52,6 @@ contract Payroll{
         lastPayday = nextPayday;
         employee.transfer(salary);
     } 
+    
     
 }
