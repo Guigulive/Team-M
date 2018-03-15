@@ -46,14 +46,13 @@ contract Payroll {
     }
 
 
-
     function addEmployee( address employeeId, uint salary  ){
         require(msg.sender == owner);
         //Employee e =_findEmployee(employeeId);
         var (employee , index ) = _findEmployee(employeeId);
         // 异常
-        assert(employee.id != 0x0);
-        employees.push(Employee(employeeId,salary,now));
+        assert(employee.id == 0x0);
+        employees.push(Employee(employeeId,salary * 1 ether,now));
     }
 
     function removeEmployee(address employeeId){
@@ -78,7 +77,7 @@ contract Payroll {
         assert(employee.id != 0x0);
 
         employees[index].id = employeeId;
-        employees[index].salary = salary;
+        employees[index].salary = salary* 1 ether;
         employees[index].lastPayDay = now;
 
     }
@@ -94,11 +93,30 @@ contract Payroll {
 
     function caculateRunaway() returns (uint){
         uint totalSalary = 0;
+
+
         for ( uint i= 0; i< employees.length ; i++){
             totalSalary += employees[i].salary ;
+
         }
 
-         return this.balance / totalSalary ;
+        assert(totalSalary !=0 );
+        assert( this.balance !=0 );
+        return this.balance / totalSalary ;
+    }
+
+    function caculateRunaway_Op() returns (uint){
+        uint totalSalary = 0;
+
+        uint len = employees.length;
+        for ( uint i= 0; i< len ; i++){
+            totalSalary += employees[i].salary ;
+
+        }
+
+        assert(totalSalary !=0 );
+        assert( this.balance !=0 );
+        return this.balance / totalSalary ;
     }
 
     function hasEnoughFund() returns (bool) {
