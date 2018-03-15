@@ -1,6 +1,8 @@
 作业
 1. 完成今天的智能合约添加100ETH到合约中加入的10个员工，每个员工的薪水都是1ETH。
 
+```
+地址  eth工资
 "0x14723a09acff6d2a60dcdf7aa4aff308fddc160c", 1
 "0x4b0897b0513fdc7c541b6d9d7e929c4e5364d2db", 1
 "0x583031d1113ad414f02576bd6afabfb302140225", 1
@@ -11,7 +13,7 @@
 "0xfa81525dad1d44bb4d1938573c7ab1dc9b923661", 1
 "0x3d400952792cb363da37e884833d2b56a0b5a14b", 1
 "0xd962b0fffa780b0c20f02079c09bc04f33bf8f48", 1
-
+```
 
 
 2. 每次加入一个员工后调用 calculateRunway函数并且记录消耗gas是多少?
