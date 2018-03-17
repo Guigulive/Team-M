@@ -1,5 +1,5 @@
 /***********
-gas 记录
+优化钱 gas 记录
 操作  transaction cost   execution cost
 1       22966               1694
 2       23747               2475
@@ -12,6 +12,14 @@ gas 记录
 9       29214               7942
 10      29995               8723
 
+优化后
+操作  transaction cost   execution cost
+1       22356               1084
+2       22356               1084
+3       22356               1084
+4       22356               1084
+--
+--
 *********/
 
 pragma solidity ^0.4.14;
