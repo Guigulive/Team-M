@@ -19,4 +19,4 @@
 
 ## 优化
 
-使用类似 sum 的方法，直接得出所有员工工资的和
+将员工工资总额的更新放在 addEmployee/updateEmployee/deleteEmployee 中，totalSalary 存为全局变量。
