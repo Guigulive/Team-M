@@ -1,51 +1,49 @@
+/*作业请提交在这个目录下*/
 pragma solidity ^0.4.14;
 
 contract Payroll {
-    uint constant paymentDuration = 10 seconds;
-    
-    address employee;
+    uint constant payDuration = 10 seconds;
+
+    address owner;
     uint salary;
-    uint lastPayday = now;
+    address employee;
+    uint lastPayday;
+
+    function Payroll() {
+        owner = msg.sender;
+    }
     
-    function addFund() payable returns(uint) {
+    function updateEmployee(address e, uint s) {
+        require(msg.sender == owner);
+        
+        if (employee != 0x0) {
+            uint payment = salary * (now - lastPayday) / payDuration;
+            employee.transfer(payment);
+        }
+        
+        employee = e;
+        salary = s * 1 ether;
+        lastPayday = now;
+    }
+    
+    function addFund() payable returns (uint) {
         return this.balance;
     }
     
-    function setEmployee(address e) {
-        employee = e;
-    }
-    
-    function setSalary(uint s) {
-        salary = s * 1 ether;
-    }
-    
-    function calculateRunway() returns(uint) {
+    function calculateRunway() returns (uint) {
         return this.balance / salary;
     }
     
-    function hasEnoughtFund() returns(bool) {
+    function hasEnoughFund() returns (bool) {
         return calculateRunway() > 0;
     }
     
-    function employeeValidation() constant returns(bool) {
-        return !(employee == address(0));
-    }
-    
-    function salaryValidation() constant returns(bool) {
-        return salary > 0;
-    }
-    
     function getPaid() {
-        if (!employeeValidation() || !salaryValidation() || !hasEnoughtFund()) {
-            revert();
-        }
+        require(msg.sender == employee);
         
-        uint nextPayday = lastPayday + paymentDuration;
-        
-        if (nextPayday > now) {
-            revert();
-        }
-        
+        uint nextPayday = lastPayday + payDuration;
+        assert(nextPayday < now);
+
         lastPayday = nextPayday;
         employee.transfer(salary);
     }
