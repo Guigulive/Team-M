@@ -1,0 +1,24 @@
+第一题：完成今天所开发的合约产品化内容，使用Remix调用每一个函数，提交函数调用截图
+addEmployee：
+![](https://github.com/WengQ/Team-M/blob/master/pictures/addEmployee.jpg)
+addFund:
+![](https://github.com/WengQ/Team-M/blob/master/pictures/addFund.jpg)
+calculateRunway
+![](https://github.com/WengQ/Team-M/blob/master/pictures/calculateRunway.jpg)
+removeEmployee
+![](https://github.com/WengQ/Team-M/blob/master/pictures/removeEmployee.jpg)
+updateEmployee
+![](https://github.com/WengQ/Team-M/blob/master/pictures/updateEmployee.jpg)
+hasEnoughFund
+![](https://github.com/WengQ/Team-M/blob/master/pictures/hasEnoughFund.jpg)
+call to Payroll.employees：
+![](https://github.com/WengQ/Team-M/blob/master/pictures/call%20to%20Payroll.employees.jpg)
+call to Payroll.owner：
+![](https://github.com/WengQ/Team-M/blob/master/pictures/call%20to%20Payroll.owner.jpg)
+getPaid
+![](https://github.com/WengQ/Team-M/blob/master/pictures/getPaid.jpg)
+transferOwnerShip
+![](https://github.com/WengQ/Team-M/blob/master/pictures/transferOwnerShip.jpg)
+
+
+第二题答案在yours.sol中
