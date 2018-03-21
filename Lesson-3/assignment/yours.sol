@@ -1,7 +1,8 @@
-/*作业请提交在这个目录下*/
 pragma solidity ^0.4.14;
+import './SafeMath.sol';
+import './Ownable.sol';
 
-contract Payroll {
+contract Payroll is Ownable{
     
     struct Employee {
         address id;
@@ -10,22 +11,18 @@ contract Payroll {
     }
     uint constant payDuration = 10 seconds;
 
-    address owner;
     uint totalSalary;
     mapping(address => Employee) public employees;
     
-    function Payroll() {
-        owner = msg.sender;
-    }
-    
-    modifier onlyOwner{ 
-        require(msg.sender == owner);
+    modifier employeeOwner(){
+        assert(msg.sender == employees[msg.sender].id);
         _;
     }
     
     modifier employeeExist(address employeeId){
         var employee = employees[employeeId];
         assert(employee.id != 0x0);
+        _;
     }
     
     
@@ -41,7 +38,7 @@ contract Payroll {
         employees[employeeId] = Employee(employeeId, salary, now);
     }
     
-    function deleteEmployee(address employeeId) onlyOwner employeeExist{
+    function removeEmployee(address employeeId) onlyOwner employeeExist(employeeId){
         var employee = employees[employeeId];
         _partialPay(employee);
         totalSalary -= employees[employeeId].salary * 1 ether;
@@ -57,6 +54,13 @@ contract Payroll {
         employees[employeeId].salary = salary;
         employees[employeeId].lastPayday = now;
         totalSalary += salary * 1 ether;
+    }
+    
+    function changePaymentAddress(address oldEmployeeId, address newEmployeeId) employeeOwner employeeExist(oldEmployeeId){
+        var employee = employees[oldEmployeeId];
+        employees[oldEmployeeId].id = newEmployeeId;
+        employees[newEmployeeId] = employees[oldEmployeeId];
+        delete employees[oldEmployeeId];
     }
     
     function addFund() payable returns (uint) {
