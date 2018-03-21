@@ -5,6 +5,7 @@
 完成今天的智能合约添加100ETH到合约中
 - 加入十个员工，每个员工的薪水都是1ETH
 每次加入一个员工后调用calculateRunway这个函数，并且记录消耗的gas是多少？Gas变化么？如果有 为什么？
+<<<<<<< HEAD
 答案：每次添加新员工后，calculateRunaway消耗的gas都会增加，因为每次计算totalSalary都是遍历一次employees数组，需要重复计算。
 十次的gas消耗为
 Transaction cost
@@ -38,3 +39,8 @@ Execution cost
 优化后每次gas消耗
 transaction cost 	22102 gas 
 execution cost 	830 gas
+=======
+- 如何优化calculateRunway这个函数来减少gas的消耗？
+提交：智能合约代码，gas变化的记录，calculateRunway函数的优化
+
+>>>>>>> 8cf877f6bdced1ffaed6b70e2bd14a32eb727c06
