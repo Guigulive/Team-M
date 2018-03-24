@@ -53,14 +53,14 @@ contract('removeEmployee',function(accounts){
         });
     });
 
-    it("should not remove employee by others", function(done){
+    it("cant remove by employee", function(done){
         var payroll;
         Payroll.deployed().then(instance => {
             payroll = instance;
             return payroll.addEmployee(accounts[4],1,{from:accounts[0]});
         }).then(res => {
             payroll.removeEmployee(accounts[4],{from:accounts[1]}).catch(error =>{
-                assert.include(error.toString(), "invalid opcode", "owner should be checked");
+                assert.include(error.toString(), "invalid opcode", "owner not correct");
                 done();
             });
         });
