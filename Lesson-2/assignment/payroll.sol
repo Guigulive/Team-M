@@ -23,7 +23,6 @@ contract Payroll {
    //上次支付时间
     uint lastPayDay = now;
 
-
     // init method
     function Payroll(){
         owner = msg.sender;
