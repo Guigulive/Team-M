@@ -39,6 +39,10 @@ contract PayRoll is Ownable {
         uint balance
     );
 
+    event GetPaid(
+       uint balance
+    );
+
 
      //存储employee信息改为map后，下面的函数不需要了。
      //返回参数默认存在 memory中
